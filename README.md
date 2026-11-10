@@ -899,6 +899,54 @@ table.stats {
 .report .count-btn {
   min-width: 160px;
 }
+/* ---------- Усі розділи на повну ширину ---------- */
+.app { max-width: none; }
+
+#calc, #stats, #report,
+#history, #top, #finance, #roster, #settings {
+  width: 100%;
+}
+
+.calc,
+.stats-block,
+.stats-block.wide,
+.settings-card {
+  max-width: none !important;
+  width: 100%;
+}
+
+/* усі таблиці */
+table.stats {
+  width: 100% !important;
+  table-layout: auto;
+}
+.table-wrap { width: 100%; }
+.table-wrap .stats { min-width: 0; }
+
+/* Статистика: нік зліва, кнопка контрактів по правому краю */
+.report th:first-child,
+.report td:first-child {
+  text-align: left;
+  width: 100%;
+}
+.report th:last-child,
+.report td:last-child {
+  text-align: right;
+  width: 210px;
+  white-space: nowrap;
+}
+.report .count-btn { min-width: 160px; }
+
+/* Виплати: сума праворуч, чекбокс по центру фіксованої колонки */
+.stats:not(.report) th:first-child,
+.stats:not(.report) td:first-child { width: auto; }
+
+/* Налаштування: поля на всю ширину картки */
+.settings-card input,
+.settings-card select { width: 100%; }
+
+/* картки "Топ" і "Фінанси" розтягуються рівномірно */
+.top-grid, .metric-grid { width: 100%; }
 </style>
 </head>
 <body>
