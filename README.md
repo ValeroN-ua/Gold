@@ -850,7 +850,62 @@
   .file-label { display:inline-flex;align-items:center;cursor:pointer; }
   @media(max-width:800px) { .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .top-grid { grid-template-columns:1fr; } }
   @media(max-width:520px) { .metric-grid { grid-template-columns:1fr; }.stats-head { align-items:flex-start;flex-direction:column; }.settings-actions>* { width:100%;justify-content:center; } }
+/* ---------- Таблиці в стилі GOLD (захист від чужих стилів) ---------- */
+:root { color-scheme: dark; }
 
+table.stats {
+  background:
+    linear-gradient(180deg, rgba(233,69,59,.10), transparent 120px),
+    var(--panel) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 14px;
+  color: var(--text) !important;
+}
+table.stats thead,
+table.stats tbody,
+table.stats tr {
+  background: transparent !important;
+}
+table.stats th {
+  background: transparent !important;
+  color: var(--muted) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+table.stats td {
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+/* без «зебри» */
+table.stats tbody tr:nth-child(even) td,
+table.stats tbody tr:nth-child(odd) td {
+  background: transparent !important;
+}
+table.stats tbody tr:hover td {
+  background: rgba(255,255,255,.03) !important;
+}
+table.stats tr:last-child td { border-bottom: 0 !important; }
+
+/* виплачено — зелений рядок */
+table.stats tr.paid td {
+  background: rgba(76,195,90,.16) !important;
+  color: var(--green) !important;
+}
+
+/* чекбокс виплати */
+.pay .box {
+  background: var(--panel-2) !important;
+  border: 1.5px solid #46464b !important;
+}
+.pay input:checked + .box {
+  background: var(--green) !important;
+  border-color: var(--green) !important;
+}
+
+/* таблиці з прокруткою (Історія, Топ, Склад) */
+.table-wrap { background: transparent; }
 </style>
 </head>
 <body>
@@ -1967,7 +2022,24 @@
   });
   statsBodyObserver.observe(statsBody,{childList:true,subtree:true});
   recalculateTotals();
+(function navWheel() {
+  const navEl = document.querySelector('.sidebar nav');
+  if (!navEl) return;
+  navEl.addEventListener('wheel', e => {
+    // якщо всі кнопки вміщуються, нічого не робимо
+    if (navEl.scrollWidth <= navEl.clientWidth) return;
+    // горизонтальні жести тачпада лишаємо як є
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
 
+    const atStart = navEl.scrollLeft <= 0 && e.deltaY < 0;
+    const atEnd = navEl.scrollLeft + navEl.clientWidth >= navEl.scrollWidth - 1 && e.deltaY > 0;
+    if (atStart || atEnd) return; // на краях сторінка скролиться як звичайно
+
+    e.preventDefault();
+    navEl.scrollLeft += e.deltaY;
+  }, { passive: false });
+})();
+  
 </script>
 </body>
 </html>
