@@ -108,9 +108,9 @@
   #calc[hidden], #stats[hidden], #report[hidden], #truck[hidden], .empty[hidden], .extra-section[hidden] { display: none; }
   #calc, #stats, #report, .extra-section { width: 100%; }
 
-  h1 { font-size: 24px; font-weight: 700; }
+  h1 { font-size: 24px; font-weight: 700; border: 0 !important; text-decoration: none; }
   h1::after {
-    content: ""; display: block; height: 2px; margin-top: 8px; width: 56px;
+    content: ""; display: block; height: 2px; margin-top: 8px; width: 56px; max-width: 56px;
     background: linear-gradient(90deg, var(--red), var(--gold)); border-radius: 2px;
     box-shadow: 0 0 10px rgba(232,184,74,.6);
   }
@@ -233,7 +233,7 @@
   .table-wrap { width: 100%; overflow-x: auto; border-radius: 14px; background: transparent; }
   table.stats {
     width: 100%;
-    table-layout: auto;
+    table-layout: fixed;
     border-collapse: separate; border-spacing: 0;
     background: linear-gradient(180deg, rgba(233,69,59,.10), transparent 120px), var(--panel) !important;
     border: 1px solid var(--line) !important;
@@ -259,11 +259,23 @@
   }
   .stats tr:last-child td { border-bottom: 0 !important; }
   .stats tbody tr:hover td { background: rgba(255,255,255,.03) !important; }
-  .stats th:nth-child(2), .stats td:nth-child(2) { text-align: right; }
-  .stats th:nth-child(3), .stats td:nth-child(3) { text-align: center; width: 120px; }
   .stats td:first-child { font-weight: 600; overflow-wrap: anywhere; }
-  .stats td:nth-child(2) { font-weight: 800; font-variant-numeric: tabular-nums; }
-  .table-wrap .stats th:last-child, .table-wrap .stats td:last-child { text-align: right; }
+  .stats td { font-variant-numeric: tabular-nums; }
+  .table-wrap .stats { min-width: 560px; }
+
+  /* Виплати: нік | сума | виплата */
+  #stats .stats th:nth-child(2), #stats .stats td:nth-child(2) { width: 22%; text-align: right; font-weight: 800; }
+  #stats .stats th:nth-child(3), #stats .stats td:nth-child(3) { width: 16%; text-align: center; }
+  /* Історія: дата | гравець | виплата | дія */
+  #history .stats th:nth-child(1) { width: 22%; }
+  #history .stats th:nth-child(3), #history .stats td:nth-child(3) { width: 18%; text-align: right; font-weight: 800; }
+  #history .stats th:nth-child(4), #history .stats td:nth-child(4) { width: 16%; text-align: right; }
+  /* Топ: місце | гравець | контракти | зароблено */
+  #top .stats th:nth-child(1) { width: 10%; }
+  #top .stats th:nth-child(3), #top .stats td:nth-child(3) { width: 18%; text-align: center; }
+  #top .stats th:nth-child(4), #top .stats td:nth-child(4) { width: 20%; text-align: right; font-weight: 800; }
+  /* Склад: учасник | дії */
+  #roster .stats th:nth-child(2), #roster .stats td:nth-child(2) { width: 330px; text-align: right; white-space: nowrap; }
   .stats tr.paid td {
     background: rgba(76,195,90,.16) !important;
     color: var(--green) !important;
@@ -277,9 +289,7 @@
   .pay input:focus-visible + .box { outline: 2px solid var(--red); outline-offset: 2px; }
 
   /* Статистика: нік зліва, кнопка по правому краю */
-  .report th:first-child, .report td:first-child { text-align: left; width: 100%; }
-  .report th:last-child, .report td:last-child { text-align: right; width: 210px; white-space: nowrap; }
-  .report th:nth-child(2), .report td:nth-child(2) { width: 210px; }
+  .report th:nth-child(2), .report td:nth-child(2) { width: 240px; text-align: right; white-space: nowrap; }
   .week-range { margin: -6px 0 14px; }
 
   .click-btn {
@@ -685,6 +695,10 @@
     body { padding: 12px; }
     .field, .result, .actions { padding-left: 18px; padding-right: 18px; }
     .stats th, .stats td { padding-left: 14px; padding-right: 14px; }
+    #stats .stats th:nth-child(2), #stats .stats td:nth-child(2) { width: 30%; }
+    #stats .stats th:nth-child(3), #stats .stats td:nth-child(3) { width: 24%; }
+    .report th:nth-child(2), .report td:nth-child(2) { width: 150px; }
+    .count-btn { min-width: 120px; }
     .stats-head { flex-wrap: wrap; align-items: flex-start; flex-direction: column; }
     .head-actions { width: 100%; }
     .head-actions .ghost { flex: 1; justify-content: center; }
