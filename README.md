@@ -872,33 +872,6 @@ table.stats tr.paid td {
   border-color: var(--green) !important;
 }
 
-.table-wrap { background: transparent; }
-/* ---------- Таблиці на всю ширину ---------- */
-.stats-block,
-.stats-block.wide {
-  max-width: none !important;
-  width: 100%;
-}
-table.stats {
-  width: 100% !important;
-  table-layout: auto;
-}
-
-/* Статистика: нік зліва, кнопка з контрактами прижата до правого краю */
-.report th:first-child,
-.report td:first-child {
-  text-align: left;
-  width: 100%;
-}
-.report th:last-child,
-.report td:last-child {
-  text-align: right;
-  width: 210px;
-  white-space: nowrap;
-}
-.report .count-btn {
-  min-width: 160px;
-}
 /* ---------- Усі розділи на повну ширину ---------- */
 .app { max-width: none; }
 
@@ -947,6 +920,7 @@ table.stats {
 
 /* картки "Топ" і "Фінанси" розтягуються рівномірно */
 .top-grid, .metric-grid { width: 100%; }
+
 </style>
 </head>
 <body>
