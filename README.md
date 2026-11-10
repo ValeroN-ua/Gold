@@ -39,8 +39,7 @@
     gap: clamp(14px, 1.6vw, 24px);
     align-items: start;
   }
-
-  /* ---------- Sidebar ---------- */
+  
   .sidebar {
     background: var(--panel);
     border: 1px solid var(--line);
@@ -89,7 +88,6 @@
   nav button.active svg { color: var(--red); }
   button:focus-visible, input:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 
-  /* ---------- Main ---------- */
   main { min-width: 0; }
   .empty { color: var(--muted); padding: 40px 8px; font-size: 16px; }
   #calc[hidden], #stats[hidden], #report[hidden], #truck[hidden], .empty[hidden] { display: none; }
@@ -205,7 +203,6 @@
   .primary:hover:not(:disabled) { filter: brightness(1.1); }
   .primary:disabled { opacity: .35; cursor: not-allowed; box-shadow: none; }
 
-  /* ---------- Statistics ---------- */
   .stats-block { max-width: 760px; }
   .stats-head {
     display: flex; justify-content: space-between; align-items: center;
@@ -289,7 +286,6 @@
   .week-range { margin: -6px 0 14px; }
   .ghost.armed { background: rgba(233,69,59,.25); border-color: var(--red); color: #fff; }
 
-  /* ---------- Модальне вікно статистики ---------- */
   .modal {
     position: fixed; inset: 0; z-index: 50;
     display: grid; place-items: center;
@@ -396,8 +392,6 @@
   }
   @media (max-width: 520px) { .modal-card { padding: 20px; } .donut { width: 190px; height: 190px; } }
 
-  /* ---------- Адаптивність: телефон / планшет / ноутбук / комп'ютер ---------- */
-  /* ноутбук і більше: розрахунок у дві колонки */
   @media (min-width: 1100px) {
     .calc { max-width: 980px; display: grid; grid-template-columns: 1fr 1fr; }
     .calc .field { grid-column: 1; }
@@ -442,10 +436,6 @@
     .head-actions .ghost { flex: 1; justify-content: center; }
   }
 
-
-  /* =====================================================
-     Анімації в стилі GOLD
-     ===================================================== */
   .app { position: relative; z-index: 1; }
 
   /* плаваючі корони на фоні */
@@ -465,7 +455,6 @@
     100% { transform: translate(calc(var(--sway) * -.6), -118vh) rotate(-8deg); opacity: 0; }
   }
 
-  /* логотип: золоте обертове кільце й пульсація */
   .logo { position: relative; animation: logoGlow 3.4s ease-in-out infinite; }
   .logo::before {
     content: ""; position: absolute; inset: -7px; border-radius: 50%; pointer-events: none;
@@ -481,7 +470,6 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* блиск, що пробігає по шапці */
   .org-head { position: relative; overflow: hidden; }
   .org-head::after {
     content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; pointer-events: none;
@@ -491,11 +479,9 @@
   }
   @keyframes headShine { 0%, 55% { left: -40%; } 100% { left: 140%; } }
 
-  /* пункт меню: пульсація активного */
   nav button.active svg { animation: iconPulse 2.2s ease-in-out infinite; }
   @keyframes iconPulse { 50% { filter: drop-shadow(0 0 6px rgba(233,69,59,.9)); transform: scale(1.12); } }
 
-  /* поява розділу */
   .enter .calc, .enter .stats-block > .stats-head, .enter table.stats { animation: rise .55s cubic-bezier(.2,.8,.2,1) both; }
   .enter table.stats { animation-delay: .08s; }
   .enter .calc .field { animation: rise .5s cubic-bezier(.2,.8,.2,1) both; }
@@ -515,12 +501,10 @@
   .enter h1::after { animation: grow .8s .15s cubic-bezier(.2,.8,.2,1) both; }
   @keyframes grow { from { width: 0; } }
 
-  /* спалах рядка, що змінився */
   .stats tr.flash td { animation: flashRow 1.4s ease-out; }
   @keyframes flashRow { 0% { background: rgba(232,184,74,.45); } 100% { background: transparent; } }
   .stats tr.paid.flash td { animation: none; }
 
-  /* кнопки: блиск при наведенні */
   .primary, .click-btn { position: relative; overflow: hidden; }
   .primary::after, .click-btn::after {
     content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; pointer-events: none;
@@ -531,7 +515,6 @@
   .primary:not(:disabled) { animation: btnPulse 2.6s ease-in-out infinite; }
   @keyframes btnPulse { 0%, 100% { box-shadow: 0 6px 18px rgba(233,69,59,.3); } 50% { box-shadow: 0 6px 30px rgba(233,69,59,.65), 0 0 0 4px rgba(233,69,59,.12); } }
 
-  /* салют із монет і корон */
   .spark { position: fixed; z-index: 100; pointer-events: none; left: 0; top: 0; will-change: transform, opacity; }
   .spark.coin {
     width: 13px; height: 13px; border-radius: 50%;
@@ -544,7 +527,6 @@
     border: 2px solid rgba(232,184,74,.9); box-shadow: 0 0 16px rgba(232,184,74,.7);
   }
 
-  /* вікно гравця: золоте кільце навколо діаграми */
   .donut::before {
     content: ""; position: absolute; inset: -12px; border-radius: 50%; pointer-events: none;
     border: 1px dashed rgba(232,184,74,.45); animation: spin 30s linear infinite;
@@ -558,9 +540,6 @@
     .enter .stats-block > .stats-head, .enter .stats tbody tr, .enter h1::after, .stats tr.flash td { animation: none; }
   }
 
-  /* =====================================================
-     Розділ «Далекобійник»: нічна траса, дорожні знаки
-     ===================================================== */
   .truck-panel {
     position: relative; overflow: hidden;
     max-width: 980px; min-height: 460px;
@@ -670,7 +649,6 @@
     .hazard, .stars, .soon h2, .beacon, .horizon, .truck-svg, .wheel, .lane, #truck.enter .truck-panel { animation: none; }
   }
 
-  /* «Далекобійник» відкривається як окрема сторінка на весь екран */
   #truck {
     position: fixed; inset: 0; z-index: 60;
     background: #05070b;
@@ -702,9 +680,6 @@
   @media (max-width: 520px) { .truck-back { top: 28px; left: 14px; padding: 9px 14px 9px 10px; } }
   @media (prefers-reduced-motion: reduce) { #truck { animation: none; } }
 
-  /* =====================================================
-     Фон «Лос-Анджелес»: сутінки, місто, пальми, гелікоптер
-     ===================================================== */
   .la { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
   .la-sky {
     position: absolute; inset: 0;
@@ -731,7 +706,6 @@
   @keyframes scrollX { to { transform: translateX(calc(var(--tile) * -1)); } }
   @keyframes winGlow { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
 
-  /* прожектори з прем'єри */
   .sl {
     position: absolute; bottom: 140px; width: 110px; height: 440px;
     transform-origin: 50% 100%;
@@ -743,7 +717,6 @@
   .sl2 { left: 84%; animation-duration: 9s; animation-delay: -4s; }
   @keyframes slSweep { from { transform: rotate(-26deg); } to { transform: rotate(26deg); } }
 
-  /* гелікоптер із прожектором */
   .heli { position: absolute; top: 11%; left: 0; width: 90px; animation: heliFly 34s linear -9s infinite; }
   .heli svg { display: block; width: 90px; height: auto; animation: heliBob 2.4s ease-in-out infinite; }
   .heli .rotor { transform-box: fill-box; transform-origin: center; animation: rotorSpin .12s linear infinite; }
@@ -761,7 +734,6 @@
   @keyframes navBlink { 50% { opacity: 0; } }
   @keyframes beamSway { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }
 
-  /* літаки у небі */
   .plane { position: absolute; left: 0; top: 7%; animation: planeFly 58s linear -24s infinite; }
   .plane.p2 { top: 19%; animation-duration: 82s; animation-delay: -60s; animation-direction: reverse; }
   .plane i { display: block; width: 4px; height: 4px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px 2px rgba(255,255,255,.7); animation: strobe 1.8s steps(1) infinite; }
@@ -774,7 +746,6 @@
     .heli, .plane { display: none; }
   }
 
-  /* ---------- «Далекобійник»: живіша сцена ---------- */
   .moon {
     position: absolute; top: 9%; right: 13%; width: 54px; height: 54px; border-radius: 50%;
     background: radial-gradient(circle at 36% 34%, #fffaf0, #e8dcc2 58%, #b3a283);
@@ -818,7 +789,6 @@
     .smoke, .dust, .traffic { display: none; }
   }
 
-  /* ---------- GOLD expansion ---------- */
   nav button.extra-tab svg { width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round; }
   .extra-section[hidden] { display:none; }
   .stats-block.wide { max-width:1100px; }
@@ -850,7 +820,7 @@
   .file-label { display:inline-flex;align-items:center;cursor:pointer; }
   @media(max-width:800px) { .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .top-grid { grid-template-columns:1fr; } }
   @media(max-width:520px) { .metric-grid { grid-template-columns:1fr; }.stats-head { align-items:flex-start;flex-direction:column; }.settings-actions>* { width:100%;justify-content:center; } }
-/* ---------- Таблиці в стилі GOLD (захист від чужих стилів) ---------- */
+  
 :root { color-scheme: dark; }
 
 table.stats {
@@ -888,13 +858,11 @@ table.stats tbody tr:hover td {
 }
 table.stats tr:last-child td { border-bottom: 0 !important; }
 
-/* виплачено — зелений рядок */
 table.stats tr.paid td {
   background: rgba(76,195,90,.16) !important;
   color: var(--green) !important;
 }
 
-/* чекбокс виплати */
 .pay .box {
   background: var(--panel-2) !important;
   border: 1.5px solid #46464b !important;
@@ -904,8 +872,33 @@ table.stats tr.paid td {
   border-color: var(--green) !important;
 }
 
-/* таблиці з прокруткою (Історія, Топ, Склад) */
 .table-wrap { background: transparent; }
+/* ---------- Таблиці на всю ширину ---------- */
+.stats-block,
+.stats-block.wide {
+  max-width: none !important;
+  width: 100%;
+}
+table.stats {
+  width: 100% !important;
+  table-layout: auto;
+}
+
+/* Статистика: нік зліва, кнопка з контрактами прижата до правого краю */
+.report th:first-child,
+.report td:first-child {
+  text-align: left;
+  width: 100%;
+}
+.report th:last-child,
+.report td:last-child {
+  text-align: right;
+  width: 210px;
+  white-space: nowrap;
+}
+.report .count-btn {
+  min-width: 160px;
+}
 </style>
 </head>
 <body>
