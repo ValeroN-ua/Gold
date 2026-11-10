@@ -424,6 +424,7 @@
   @media all {
     nav { display: flex; overflow-x: auto; padding: 0 12px 12px; gap: 8px; scrollbar-width: none; }
     nav::-webkit-scrollbar { display: none; }
+    nav { overscroll-behavior-x: contain; }
     nav button {
       width: auto; flex: none; white-space: nowrap;
       padding: 12px 16px; gap: 10px;
@@ -1967,7 +1968,24 @@
   });
   statsBodyObserver.observe(statsBody,{childList:true,subtree:true});
   recalculateTotals();
+(function navWheel() {
+  const navEl = document.querySelector('.sidebar nav');
+  if (!navEl) return;
+  navEl.addEventListener('wheel', e => {
+    // якщо всі кнопки вміщуються, нічого не робимо
+    if (navEl.scrollWidth <= navEl.clientWidth) return;
+    // горизонтальні жести тачпада лишаємо як є
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
 
+    const atStart = navEl.scrollLeft <= 0 && e.deltaY < 0;
+    const atEnd = navEl.scrollLeft + navEl.clientWidth >= navEl.scrollWidth - 1 && e.deltaY > 0;
+    if (atStart || atEnd) return; // на краях сторінка скролиться як звичайно
+
+    e.preventDefault();
+    navEl.scrollLeft += e.deltaY;
+  }, { passive: false });
+})();
+  
 </script>
 </body>
 </html>
